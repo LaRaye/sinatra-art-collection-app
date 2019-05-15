@@ -1,4 +1,4 @@
-class CreatePaintingsTable < ActiveRecord::Migration[4.2]
+class CreatePaintingsTable < ActiveRecord::Migration
   def change
     create_table :paintings do |t|
       t.string :name

@@ -1,0 +1,3 @@
+class SculpturesController < ApplicationController
+
+end 

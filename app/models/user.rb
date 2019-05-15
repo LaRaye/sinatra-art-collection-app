@@ -1,3 +1,4 @@
 class User < ActiveRecord::Base
-
-end 
+  has_many :paintings
+  has_many :sculptures
+end

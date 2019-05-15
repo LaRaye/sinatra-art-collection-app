@@ -1,3 +1,3 @@
 class Painting < ActiveRecord::Base
-
-end 
+  belongs_to :user
+end

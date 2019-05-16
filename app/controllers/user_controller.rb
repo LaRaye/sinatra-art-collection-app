@@ -18,6 +18,9 @@ class UserController < ApplicationController
   end
 
   get '/login' do
+    if Helpers.is_logged_in?(session)
+      redirect '/art'
+    end
     erb :'users/login'
   end
 
@@ -33,6 +36,9 @@ class UserController < ApplicationController
   end
 
   get '/art' do
+    if Helpers.is_logged_in?(session) == false
+      redirect '/login'
+    end
     erb :'users/art'
   end
 

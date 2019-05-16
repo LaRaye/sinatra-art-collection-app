@@ -1,8 +1,8 @@
 class UserController < ApplicationController
   get '/signup' do
-    # if Helpers.is_logged_in?(session)
-    #   redirect '/'
-    # end
+    if Helpers.is_logged_in?(session)
+      redirect '/art'
+    end
     erb :'users/signup'
   end
 
@@ -11,7 +11,7 @@ class UserController < ApplicationController
       @user = User.create(:username => params[:username], :password => params[:password])
 
       session[:user_id] = @user.id
-      redirect "/" ###
+      redirect "/art" ###
     else
       redirect "/signup" ###create failure
     end
@@ -26,10 +26,14 @@ class UserController < ApplicationController
 
     if @user && @user.authenticate(params[:password])
       session[:user_id] = @user.id
-      redirect '/' ###
+      redirect '/art' ###
     else
       redirect '/login' ###create failure
     end
+  end
+
+  get '/art' do
+    erb :'users/art'
   end
 
   get '/logout' do

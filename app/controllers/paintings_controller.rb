@@ -43,11 +43,20 @@ class PaintingsController < ApplicationController
   patch '/paintings/:id' do
     @painting = Painting.find_by_id(params[:id])
 
-    if params[:name] != ""
-      @painting.name = params[:name]
-      @painting.save
+    params.each do |k, v|
+      if k == 'name' && v != ""
+        @painting.name = v
+      elsif k == 'artist' && v != ""
+        @painting.artist = v
+      elsif k == 'date' && v != ""
+        @painting.date = v
+      elsif k == 'description' && v != ""
+        @painting.description = v
+      elsif k == 'style' && v != ""
+        @painting.style = v
+      end
     end
-
+    @painting.save
     redirect to "/paintings/#{@painting.id}"
   end
 

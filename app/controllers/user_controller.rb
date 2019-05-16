@@ -39,6 +39,7 @@ class UserController < ApplicationController
     if Helpers.is_logged_in?(session) == false
       redirect '/login'
     end
+    @user = Helpers.current_user(session)
     erb :'users/art'
   end
 

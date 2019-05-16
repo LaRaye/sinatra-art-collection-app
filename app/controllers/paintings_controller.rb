@@ -20,16 +20,20 @@ class PaintingsController < ApplicationController
     if params[:name] != ""
       @painting = Painting.create(params)
     end
-    erb :'paintings/index'
+    redirect '/paintings' #redirect to individual show page?
   end
 
   get '/paintings/:id' do
     if Helpers.is_logged_in?(session) == false
       redirect '/login'
     end
-    @painting = Painting.find_by(params[:id])
+    @painting = Painting.find_by_id(params[:id])
     erb :'paintings/show'
-  end 
+  end
+
+
+
+
 
 
 

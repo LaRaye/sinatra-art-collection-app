@@ -1,7 +1,10 @@
 class PaintingsController < ApplicationController
   get '/paintings' do
-    # Helpers.redirect_if_not_logged_in(session)
+    if Helpers.is_logged_in?(session) == false
+      redirect '/login'
+    end
     @paintings = Painting.all
+    @user = Helpers.current_user(session)
     erb :'paintings/index'
   end
 

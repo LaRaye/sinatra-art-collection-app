@@ -9,14 +9,17 @@ class PaintingsController < ApplicationController
   end
 
   get '/paintings/new' do
+    if Helpers.is_logged_in?(session) == false
+      redirect '/login'
+    end
     erb :'paintings/new'
   end
 
   post '/paintings' do
+    @user = Helpers.current_user(session)
     if params[:name] != ""
       @painting = Painting.create(params)
     end
-    binding.pry
     erb :'paintings/index'
   end
 

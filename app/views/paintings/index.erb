@@ -1,9 +1,13 @@
 <h2>Your Paintings</h2>
   <% @paintings.each do |painting| %>
-    <%= painting.name %>
+    <br>
+    <h3><%= painting.name %></h3>
   <% end %>
-
-
+<br>
+<br>
+Add a New Painting?:
+<a href="/paintings/new"><button>New Painting</button></a>
+<br>
 <br>
 <a href="/"><button>Return to Home</button></a>
 <a href="/logout"><button>Sign Out</button></a>

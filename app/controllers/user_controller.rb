@@ -1,14 +1,14 @@
 class UserController < ApplicationController
   get '/signup' do
-    if Helpers.is_logged_in?(session)
-      redirect '/'
-    end
+    # if Helpers.is_logged_in?(session)
+    #   redirect '/'
+    # end
     erb :'users/signup'
   end
 
   post '/signup' do
     if params[:username] != "" && params[:password] != ""
-      @user = User.first_or_create(:username => params[:username], :password => params[:password])
+      @user = User.create(:username => params[:username], :password => params[:password])
 
       session[:user_id] = @user.id
       redirect "/" ###

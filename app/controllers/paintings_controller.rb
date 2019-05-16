@@ -35,6 +35,4 @@ class PaintingsController < ApplicationController
 
 
 
-
-
 end

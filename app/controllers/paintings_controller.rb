@@ -55,12 +55,19 @@ class PaintingsController < ApplicationController
       elsif k == 'style' && v != ""
         @painting.style = v
       end
+      @painting.save
     end
-    @painting.save
     redirect to "/paintings/#{@painting.id}"
   end
 
-
+  delete '/paintings/:id/delete' do
+    if Helpers.is_logged_in?(session) == false
+      redirect '/login'
+    end
+    @painting = Painting.find_by_id(params[:id])
+    @painting.delete
+    redirect '/paintings'
+  end
 
 
 end

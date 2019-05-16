@@ -31,6 +31,25 @@ class PaintingsController < ApplicationController
     erb :'paintings/show'
   end
 
+  get '/paintings/:id/edit' do
+    if Helpers.is_logged_in?(session) == false
+      redirect '/login'
+    end
+
+    @painting = Painting.find_by_id(params[:id])
+    erb :'/paintings/edit'
+  end
+
+  patch '/paintings/:id' do
+    @painting = Painting.find_by_id(params[:id])
+
+    if params[:name] != ""
+      @painting.name = params[:name]
+      @painting.save
+    end
+
+    redirect to "/paintings/#{@painting.id}"
+  end
 
 
 

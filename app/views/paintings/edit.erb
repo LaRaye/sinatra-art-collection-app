@@ -1,0 +1,22 @@
+<h2><%= @painting.name %></h2>
+  <h3>Edit This Painting's Profile</h3>
+    <form method='POST' action='/paintings/<%= @painting.id %>'>
+      <input id='hidden' type='hidden' name='_method' value='patch'>
+        <label for='name'>Name:</label>
+          <input name='name' type='text' id='name'>
+        <br>
+        <label for='artist'>Artist:</label>
+          <input name='artist' type='text' id='artist'>
+        <br>
+        <label for='date'>Date:</label>
+          <input name='date' type='text' id='date'>
+        <br>
+        <label for='description'>Description:</label>
+          <input name='description' type='text' id='description'>
+        <br>
+        <label for='style'>Style:</label>
+          <input name='style' type='text' id='style'>
+      <br>
+      <br>
+      <input type='submit' id='submit' value='Edit Painting'>
+    </form>

@@ -23,6 +23,14 @@ class PaintingsController < ApplicationController
     erb :'paintings/index'
   end
 
+  get '/paintings/:id' do
+    if Helpers.is_logged_in?(session) == false
+      redirect '/login'
+    end
+    @painting = Painting.find_by(params[:id])
+    erb :'paintings/show'
+  end 
+
 
 
 end

@@ -1,0 +1,9 @@
+<h2><%= @painting.name %></h2>
+  <h3>By <%= @painting.artist %></h3>
+    <p> <%= @painting.date %></p>
+    <p> <%= @painting.style %></p>
+    <p> <%= @painting.description %></p>
+  <a href='/paintings/<%= @painting.id %>'></a>
+<br>
+<a href="/"><button>Return to Home</button></a>
+<a href="/logout"><button>Sign Out</button></a>

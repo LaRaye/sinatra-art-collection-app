@@ -4,6 +4,15 @@ class UserController < ApplicationController
   end
 
   post '/signup' do
-    params.inspect
+    @user = User.new(:username => params[:username], :password => params[:password])
+
+    if @user.save && params[:username] != ""
+      session[:user_id] = @user.id
+      redirect "/" ###
+    else
+      redirect "/signup" ###create failure
+    end
   end
+
+
 end

@@ -20,7 +20,7 @@ class PaintingsController < ApplicationController
     if params[:name] != ""
       @painting = Painting.create(params)
     end
-    redirect '/paintings' #redirect to individual show page?
+    redirect to "/paintings/#{@painting.id}"
   end
 
   get '/paintings/:id' do

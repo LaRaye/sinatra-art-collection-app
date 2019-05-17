@@ -26,7 +26,6 @@ class PaintingsController < ApplicationController
     else
       redirect '/paintings/new'
     end
-
   end
 
   get '/paintings/:id' do

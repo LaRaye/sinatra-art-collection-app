@@ -26,7 +26,6 @@ class SculpturesController < ApplicationController
     else
       redirect '/sculptures/new'
     end
-
   end
 
   get '/sculptures/:id' do

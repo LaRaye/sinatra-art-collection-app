@@ -1,0 +1,19 @@
+<h2><%= @sculpture.name %></h2>
+  <h3>By <%= @sculpture.artist %></h3>
+    <p> <%= @sculpture.date %></p>
+    <p> <%= @sculpture.style %></p>
+    <p> <%= @sculpture.description %></p>
+  <br>
+  <br>
+  <a href='/sculptures/<%= @sculpture.id %>/edit'><button>EDIT Sculpture Profile</button></a>
+  <br>
+  <br>
+<a href="/sculptures"><button>Return to Sculptures</button></a>
+<a href="/art"><button>Return To Collections</button></a>
+<a href="/logout"><button>Sign Out</button></a>
+<br>
+<br>
+<form action="/sculptures/<%= @sculpture.id %>/delete" method="POST">
+  <input id="hidden" type="hidden" name="_method" value="delete">
+  <input type="submit" value="DELETE Sculpture">
+</form>

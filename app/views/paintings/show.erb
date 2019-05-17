@@ -5,11 +5,13 @@
     <p> <%= @painting.description %></p>
   <br>
   <br>
-  <a href='/paintings/<%= @painting.id %>/edit'><button>Edit Painting</button></a>
-<br>
-<br>
-<a href='/paintings/<%= @painting.id %>/delete'><button>DELETE Painting</button></a>
-<br>
+  <a href='/paintings/<%= @painting.id %>/edit'><button>EDIT Painting</button></a>
+  <br>
+  <br>
+  <form action="/paintings/<%= @painting.id %>/delete" method="POST">
+    <input id="hidden" type="hidden" name="_method" value="delete">
+    <input type="submit" value="DELETE Painting">
+  </form>
 <br>
 <a href="/paintings"><button>Return to Collection</button></a>
 <a href="/"><button>Return to Home</button></a>

@@ -19,6 +19,8 @@ class PaintingsController < ApplicationController
     @user = Helpers.current_user(session)
     if params[:name] != ""
       @painting = Painting.create(params)
+      @painting.user_id = @user.id
+      @painting.save
     end
     redirect to "/paintings/#{@painting.id}"
   end
@@ -27,6 +29,7 @@ class PaintingsController < ApplicationController
     if Helpers.is_logged_in?(session) == false
       redirect '/login'
     end
+    @user = Helpers.current_user(session)
     @painting = Painting.find_by_id(params[:id])
     erb :'paintings/show'
   end

@@ -1,6 +1,6 @@
 # SinatraArtCollectionApp
 
-Welcome to BeHold!
+## Welcome to BeHold!
 
 A sinatra web application that allows users to catalog the various works of art in their collections. Users can log in to see all of their paintings and sculptures, and they have the ability to add new pieces, change the information stored about those pieces, as well as remove pieces from their collections.
 

@@ -21,8 +21,12 @@ class PaintingsController < ApplicationController
       @painting = Painting.create(params)
       @painting.user_id = @user.id
       @painting.save
+
+      redirect to "/paintings/#{@painting.id}"
+    else 
+      redirect '/paintings/new'
     end
-    redirect to "/paintings/#{@painting.id}"
+
   end
 
   get '/paintings/:id' do

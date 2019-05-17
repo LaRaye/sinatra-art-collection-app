@@ -21,8 +21,12 @@ class SculpturesController < ApplicationController
       @sculpture = Sculpture.create(params)
       @sculpture.user_id = @user.id
       @sculpture.save
+
+      redirect to "/sculptures/#{@sculpture.id}"
+    else
+      redirect '/sculptures/new'
     end
-    redirect to "/sculptures/#{@sculpture.id}"
+
   end
 
   get '/sculptures/:id' do

@@ -71,6 +71,4 @@ class PaintingsController < ApplicationController
     @painting.delete
     redirect '/paintings'
   end
-
-
 end

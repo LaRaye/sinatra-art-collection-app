@@ -1,6 +1,5 @@
 <h2>Your Paintings</h2>
   <% @paintings.each do |painting| %>
-    <br>
     <% if painting.user_id == @user.id %>
       <h3><li><a href='/paintings/<%= painting.id %>'><%= painting.name %></a></li></h3>
     <% end %>

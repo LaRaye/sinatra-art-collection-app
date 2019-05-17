@@ -11,7 +11,7 @@ class UserController < ApplicationController
       @user = User.create(:username => params[:username], :password => params[:password])
 
       session[:user_id] = @user.id
-      redirect "/art" ###
+      redirect "/art"
     else
       redirect "/signup" ###create failure
     end
@@ -29,7 +29,7 @@ class UserController < ApplicationController
 
     if @user && @user.authenticate(params[:password])
       session[:user_id] = @user.id
-      redirect '/art' ###
+      redirect '/art'
     else
       redirect '/login' ###create failure
     end
@@ -51,5 +51,4 @@ class UserController < ApplicationController
       redirect to '/'
     end
   end
-
 end

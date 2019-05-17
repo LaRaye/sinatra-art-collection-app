@@ -23,7 +23,7 @@ class PaintingsController < ApplicationController
       @painting.save
 
       redirect to "/paintings/#{@painting.id}"
-    else 
+    else
       redirect '/paintings/new'
     end
 
@@ -35,7 +35,12 @@ class PaintingsController < ApplicationController
     end
     @user = Helpers.current_user(session)
     @painting = Painting.find_by_id(params[:id])
-    erb :'paintings/show'
+
+    if @painting.user_id == @user.id
+      erb :'paintings/show'
+    else
+      redirect '/paintings'
+    end
   end
 
   get '/paintings/:id/edit' do

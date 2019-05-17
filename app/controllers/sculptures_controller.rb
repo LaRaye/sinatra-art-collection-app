@@ -35,7 +35,12 @@ class SculpturesController < ApplicationController
     end
     @user = Helpers.current_user(session)
     @sculpture = Sculpture.find_by_id(params[:id])
-    erb :'sculptures/show'
+
+    if @sculpture.user_id == @user.id
+      erb :'sculptures/show'
+    else
+      redirect '/sculptures'
+    end
   end
 
   get '/sculptures/:id/edit' do

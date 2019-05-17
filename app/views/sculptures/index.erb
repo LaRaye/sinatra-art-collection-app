@@ -1,0 +1,14 @@
+<h2>Your Sculptures</h2>
+  <% @sculptures.each do |sculpture| %>
+    <% if sculpture.user_id == @user.id %>
+      <h3><li><a href='/sculptures/<%= sculpture.id %>'><%= sculpture.name %></a></li></h3>
+    <% end %>
+  <% end %>
+<br>
+<br>
+Add a New Sculpture?:
+<a href="/sculptures/new"><button>New Sculpture</button></a>
+<br>
+<br>
+<a href="/art"><button>Return To Collections</button></a>
+<a href="/logout"><button>Sign Out</button></a>

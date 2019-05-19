@@ -14,7 +14,7 @@ class UserController < ApplicationController
       redirect "/art"
     else
       flash[:signup_err] = 'Please enter a valid username and password to sign up.'
-      redirect "/signup" ###create failure
+      redirect "/signup"
     end
   end
 
@@ -32,12 +32,14 @@ class UserController < ApplicationController
       session[:user_id] = @user.id
       redirect '/art'
     else
-      redirect '/login' ###create failure
+      flash[:login_err_1] = 'Sorry, that login is invalid. Please try again or create an account.'
+      redirect '/login'
     end
   end
 
   get '/art' do
     if Helpers.is_logged_in?(session) == false
+      flash[:login_err_2] = 'Sorry, you must be logged in to do that.'
       redirect '/login'
     end
     @user = Helpers.current_user(session)
@@ -47,8 +49,10 @@ class UserController < ApplicationController
   get '/logout' do
     if Helpers.is_logged_in?(session)
       session.clear
+      flash[:logout_message] = 'You have just logged out.'
       redirect to '/'
     else
+      flash[:login_err_2] = 'Sorry, you must be logged in to do that.'
       redirect to '/'
     end
   end

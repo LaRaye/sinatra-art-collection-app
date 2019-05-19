@@ -1,6 +1,7 @@
 class SculpturesController < ApplicationController
   get '/sculptures' do
     if Helpers.is_logged_in?(session) == false
+      flash[:login_err_2] = 'Sorry, you must be logged in to do that.'
       redirect '/login'
     end
     @sculptures = Sculpture.all
@@ -10,6 +11,7 @@ class SculpturesController < ApplicationController
 
   get '/sculptures/new' do
     if Helpers.is_logged_in?(session) == false
+      flash[:login_err_2] = 'Sorry, you must be logged in to do that.'
       redirect '/login'
     end
     erb :'sculptures/new'
@@ -24,12 +26,14 @@ class SculpturesController < ApplicationController
 
       redirect to "/sculptures/#{@sculpture.id}"
     else
+      flash[:name_err] = 'Sorry, you must include a name to add to your collection.'
       redirect '/sculptures/new'
     end
   end
 
   get '/sculptures/:id' do
     if Helpers.is_logged_in?(session) == false
+      flash[:login_err_2] = 'Sorry, you must be logged in to do that.'
       redirect '/login'
     end
     @user = Helpers.current_user(session)
@@ -44,6 +48,7 @@ class SculpturesController < ApplicationController
 
   get '/sculptures/:id/edit' do
     if Helpers.is_logged_in?(session) == false
+      flash[:login_err_2] = 'Sorry, you must be logged in to do that.'
       redirect '/login'
     end
 
@@ -73,10 +78,12 @@ class SculpturesController < ApplicationController
 
   delete '/sculptures/:id/delete' do
     if Helpers.is_logged_in?(session) == false
+      flash[:login_err_2] = 'Sorry, you must be logged in to do that.'
       redirect '/login'
     end
     @sculpture = Sculpture.find_by_id(params[:id])
     @sculpture.delete
+    flash[:deletion] = 'Successfully removed piece from your collection.'
     redirect '/sculptures'
   end
 end

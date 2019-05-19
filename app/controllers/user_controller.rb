@@ -13,6 +13,7 @@ class UserController < ApplicationController
       session[:user_id] = @user.id
       redirect "/art"
     else
+      flash[:signup_err] = 'Please enter a valid username and password to sign up.'
       redirect "/signup" ###create failure
     end
   end

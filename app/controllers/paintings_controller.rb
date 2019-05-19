@@ -1,6 +1,7 @@
 class PaintingsController < ApplicationController
   get '/paintings' do
     if Helpers.is_logged_in?(session) == false
+      flash[:login_err_2] = 'Sorry, you must be logged in to do that.'
       redirect '/login'
     end
     @paintings = Painting.all
@@ -10,6 +11,7 @@ class PaintingsController < ApplicationController
 
   get '/paintings/new' do
     if Helpers.is_logged_in?(session) == false
+      flash[:login_err_2] = 'Sorry, you must be logged in to do that.'
       redirect '/login'
     end
     erb :'paintings/new'
@@ -24,12 +26,14 @@ class PaintingsController < ApplicationController
 
       redirect to "/paintings/#{@painting.id}"
     else
+      flash[:name_err] = 'Sorry, you must include a name to add to your collection.'
       redirect '/paintings/new'
     end
   end
 
   get '/paintings/:id' do
     if Helpers.is_logged_in?(session) == false
+      flash[:login_err_2] = 'Sorry, you must be logged in to do that.'
       redirect '/login'
     end
     @user = Helpers.current_user(session)
@@ -44,6 +48,7 @@ class PaintingsController < ApplicationController
 
   get '/paintings/:id/edit' do
     if Helpers.is_logged_in?(session) == false
+      flash[:login_err_2] = 'Sorry, you must be logged in to do that.'
       redirect '/login'
     end
 
@@ -73,10 +78,12 @@ class PaintingsController < ApplicationController
 
   delete '/paintings/:id/delete' do
     if Helpers.is_logged_in?(session) == false
+      flash[:login_err_2] = 'Sorry, you must be logged in to do that.'
       redirect '/login'
     end
     @painting = Painting.find_by_id(params[:id])
     @painting.delete
+    flash[:deletion] = 'Successfully removed piece from your collection.'
     redirect '/paintings'
   end
 end

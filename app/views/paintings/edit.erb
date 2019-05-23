@@ -1,21 +1,26 @@
 <h2><%= @painting.name %></h2>
   <h3>Edit This Painting's Profile</h3>
+    <br>
     <form method='POST' action='/paintings/<%= @painting.id %>'>
       <input id='hidden' type='hidden' name='_method' value='patch'>
         <label for='name'>Name:</label>
-          <input name='name' type='text' id='name'>
+          <input name='name' type='text' id='name' value='<%= @painting.name %>' size='130'>
+        <br>
         <br>
         <label for='artist'>Artist:</label>
-          <input name='artist' type='text' id='artist'>
+          <input name='artist' type='text' id='artist' value='<%= @painting.artist %>' size='130'>
+        <br>
         <br>
         <label for='date'>Date:</label>
-          <input name='date' type='text' id='date'>
+          <input name='date' type='text' id='date' value='<%= @painting.date %>' size='130'>
+        <br>
         <br>
         <label for='description'>Description:</label>
-          <input name='description' type='text' id='description'>
+          <input name='description' type='text' id='description' value='<%= @painting.description %>' size='130'>
+        <br>
         <br>
         <label for='style'>Style:</label>
-          <input name='style' type='text' id='style'>
+          <input name='style' type='text' id='style' value='<%= @painting.style %>' size='130'>
       <br>
       <br>
       <input type='submit' id='submit' value='Edit Painting'>

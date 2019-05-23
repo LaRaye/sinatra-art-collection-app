@@ -1,21 +1,26 @@
 <h2><%= @sculpture.name %></h2>
   <h3>Edit This Sculpture's Profile</h3>
+    <br>
     <form method='POST' action='/sculptures/<%= @sculpture.id %>'>
       <input id='hidden' type='hidden' name='_method' value='patch'>
         <label for='name'>Name:</label>
-          <input name='name' type='text' id='name'>
+          <input name='name' type='text' id='name' value='<%= @sculpture.name %>' size='130'>
+        <br>
         <br>
         <label for='artist'>Artist:</label>
-          <input name='artist' type='text' id='artist'>
+          <input name='artist' type='text' id='artist' value='<%= @sculpture.artist %>' size='130'>
+        <br>
         <br>
         <label for='date'>Date:</label>
-          <input name='date' type='text' id='date'>
+          <input name='date' type='text' id='date' value='<%= @sculpture.date %>' size='130'>
+        <br>
         <br>
         <label for='description'>Description:</label>
-          <input name='description' type='text' id='description'>
+          <input name='description' type='text' id='description' value='<%= @sculpture.description %>' size='130'>
+        <br>
         <br>
         <label for='style'>Style:</label>
-          <input name='style' type='text' id='style'>
+          <input name='style' type='text' id='style' value='<%= @sculpture.style %>' size='130'>
       <br>
       <br>
       <input type='submit' id='submit' value='Edit Sculpture'>

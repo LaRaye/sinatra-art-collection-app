@@ -1,6 +1,6 @@
 class UserController < ApplicationController
   get '/signup' do
-    if Helpers.is_logged_in?(session)
+    if is_logged_in?
       redirect '/art'
     end
     erb :'users/signup'
@@ -19,7 +19,7 @@ class UserController < ApplicationController
   end
 
   get '/login' do
-    if Helpers.is_logged_in?(session)
+    if is_logged_in?
       redirect '/art'
     end
     erb :'users/login'
@@ -38,16 +38,16 @@ class UserController < ApplicationController
   end
 
   get '/art' do
-    if Helpers.is_logged_in?(session) == false
+    if is_logged_in? == false
       flash[:login_err_2] = 'Sorry, you must be logged in to do that.'
       redirect '/login'
     end
-    @user = Helpers.current_user(session)
+    @user = current_user
     erb :'users/art'
   end
 
   get '/logout' do
-    if Helpers.is_logged_in?(session)
+    if is_logged_in?
       session.clear
       flash[:logout_message] = 'You have just logged out.'
       redirect to '/'

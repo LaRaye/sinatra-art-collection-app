@@ -1,24 +1,18 @@
 class SculpturesController < ApplicationController
   get '/sculptures' do
-    if Helpers.is_logged_in?(session) == false
-      flash[:login_err_2] = 'Sorry, you must be logged in to do that.'
-      redirect '/login'
-    end
+    redirect_if_not_logged_in
     @sculptures = Sculpture.all
-    @user = Helpers.current_user(session)
+    @user = current_user
     erb :'sculptures/index'
   end
 
   get '/sculptures/new' do
-    if Helpers.is_logged_in?(session) == false
-      flash[:login_err_2] = 'Sorry, you must be logged in to do that.'
-      redirect '/login'
-    end
+    redirect_if_not_logged_in
     erb :'sculptures/new'
   end
 
   post '/sculptures' do
-    @user = Helpers.current_user(session)
+    @user = current_user
     if params[:name] != ""
       @sculpture = Sculpture.create(params)
       @sculpture.user_id = @user.id
@@ -32,11 +26,8 @@ class SculpturesController < ApplicationController
   end
 
   get '/sculptures/:id' do
-    if Helpers.is_logged_in?(session) == false
-      flash[:login_err_2] = 'Sorry, you must be logged in to do that.'
-      redirect '/login'
-    end
-    @user = Helpers.current_user(session)
+    redirect_if_not_logged_in
+    @user = current_user
     @sculpture = Sculpture.find_by_id(params[:id])
 
     if @sculpture.user_id == @user.id
@@ -47,11 +38,7 @@ class SculpturesController < ApplicationController
   end
 
   get '/sculptures/:id/edit' do
-    if Helpers.is_logged_in?(session) == false
-      flash[:login_err_2] = 'Sorry, you must be logged in to do that.'
-      redirect '/login'
-    end
-
+    redirect_if_not_logged_in
     @sculpture = Sculpture.find_by_id(params[:id])
     erb :'/sculptures/edit'
   end
@@ -77,10 +64,7 @@ class SculpturesController < ApplicationController
   end
 
   delete '/sculptures/:id/delete' do
-    if Helpers.is_logged_in?(session) == false
-      flash[:login_err_2] = 'Sorry, you must be logged in to do that.'
-      redirect '/login'
-    end
+    redirect_if_not_logged_in
     @sculpture = Sculpture.find_by_id(params[:id])
     @sculpture.delete
     flash[:deletion] = 'Successfully removed piece from your collection.'

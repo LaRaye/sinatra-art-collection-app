@@ -1,24 +1,18 @@
 class PaintingsController < ApplicationController
   get '/paintings' do
-    if Helpers.is_logged_in?(session) == false
-      flash[:login_err_2] = 'Sorry, you must be logged in to do that.'
-      redirect '/login'
-    end
+    redirect_if_not_logged_in
     @paintings = Painting.all
-    @user = Helpers.current_user(session)
+    @user = current_user
     erb :'paintings/index'
   end
 
   get '/paintings/new' do
-    if Helpers.is_logged_in?(session) == false
-      flash[:login_err_2] = 'Sorry, you must be logged in to do that.'
-      redirect '/login'
-    end
+    redirect_if_not_logged_in
     erb :'paintings/new'
   end
 
   post '/paintings' do
-    @user = Helpers.current_user(session)
+    @user = current_user
     if params[:name] != ""
       @painting = Painting.create(params)
       @painting.user_id = @user.id
@@ -32,11 +26,8 @@ class PaintingsController < ApplicationController
   end
 
   get '/paintings/:id' do
-    if Helpers.is_logged_in?(session) == false
-      flash[:login_err_2] = 'Sorry, you must be logged in to do that.'
-      redirect '/login'
-    end
-    @user = Helpers.current_user(session)
+    redirect_if_not_logged_in
+    @user = current_user
     @painting = Painting.find_by_id(params[:id])
 
     if @painting.user_id == @user.id
@@ -47,10 +38,7 @@ class PaintingsController < ApplicationController
   end
 
   get '/paintings/:id/edit' do
-    if Helpers.is_logged_in?(session) == false
-      flash[:login_err_2] = 'Sorry, you must be logged in to do that.'
-      redirect '/login'
-    end
+    redirect_if_not_logged_in
 
     @painting = Painting.find_by_id(params[:id])
     erb :'/paintings/edit'
@@ -77,10 +65,7 @@ class PaintingsController < ApplicationController
   end
 
   delete '/paintings/:id/delete' do
-    if Helpers.is_logged_in?(session) == false
-      flash[:login_err_2] = 'Sorry, you must be logged in to do that.'
-      redirect '/login'
-    end
+    redirect_if_not_logged_in
     @painting = Painting.find_by_id(params[:id])
     @painting.delete
     flash[:deletion] = 'Successfully removed piece from your collection.'

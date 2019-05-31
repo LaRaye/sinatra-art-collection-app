@@ -38,10 +38,7 @@ class UserController < ApplicationController
   end
 
   get '/art' do
-    if is_logged_in? == false
-      flash[:login_err_2] = 'Sorry, you must be logged in to do that.'
-      redirect '/login'
-    end
+    redirect_if_not_logged_in
     @user = current_user
     erb :'users/art'
   end
